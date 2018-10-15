@@ -28,8 +28,8 @@ for(let i = 0; i < githubData.length; i++){
 
 
 
-console.log('commit', commit);
-console.log('test', test);
+// console.log('commit', commit);
+// console.log('test', test);
 
 
 let test2 = 0
@@ -48,8 +48,8 @@ for(let i = 0; i < githubData.length; i++){
   }
 }
 
-console.log("test2", test2);
-console.log('commit', commit);
+// console.log("test2", test2);
+// console.log('commit', commit);
 // .hasOwnProperty()
 
 
@@ -62,7 +62,7 @@ for(let i = 0; i < githubData.length; i++){
   type.push(githubData[i].type);
 }
 
-console.log(type);
+// console.log(type);
 
 let countobj = {
   pullRequest: 0,
@@ -86,7 +86,7 @@ for(let i = 0; i < githubData.length; i++){
   }
 }
 
-console.log('countobj', countobj);
+// console.log('countobj', countobj);
 
 
 // David's Solution
@@ -109,8 +109,8 @@ for(let i=0; i<githubData.length;i++) {
   eventcounts[githubData[i].type] += 1
 }
 
-console.log(eventTypes);
-console.log(eventcounts);
+// console.log(eventTypes);
+// console.log(eventcounts);
 
 // Question 3
 // List all Github users who submitted a pull request that was approved by Steve.
@@ -132,5 +132,39 @@ for(let i = 0; i <githubData.length; i++) {
 }
 
 
-console.log('name', name);
-console.log("test3", test3);
+// console.log('name', name);
+// console.log("test3", test3);
+
+// Question 4 // List all repositories on which Steve had an event, and show how many events were on each one.
+
+let rep = [];
+let count = {
+  mastery: 0,
+  bangazon: 0,
+  setup: 0,
+  store: 0,
+}
+
+const loop = githubData.forEach(element => {
+  if(!rep.includes(element.repo.name)) {
+    rep.push(element.repo.name);
+  }
+});
+
+const otherLoop = githubData.forEach(element => {
+  if(element.repo.name === "nashville-software-school/client-side-mastery") {
+    count.mastery++;
+  } else if (element.repo.name === "nashville-software-school/bangazon-llc"){
+    count.bangazon++;
+  } else if (element.repo.name === "stevebrownlee/vps-setup"){
+    count.setup++;
+  } else if (element.repo.name === "stevebrownlee/vps-setup"){
+    count.setup++;
+  }
+
+});
+
+
+console.log(count);
+console.log(rep);
+
