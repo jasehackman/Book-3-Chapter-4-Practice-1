@@ -111,3 +111,26 @@ for(let i=0; i<githubData.length;i++) {
 
 console.log(eventTypes);
 console.log(eventcounts);
+
+// Question 3
+// List all Github users who submitted a pull request that was approved by Steve.
+
+let name = []
+let test3 = 0
+for(let i = 0; i <githubData.length; i++) {
+  
+  if("pull_request" in githubData[i].payload) {
+    test3++
+    if(githubData[i].payload.pull_request.merged_by !== null){
+      if (githubData[i].payload.pull_request.merged_by.login === "stevebrownlee") {
+        if(!name.includes(githubData[i].payload.pull_request.user.login)) {
+          name.push(githubData[i].payload.pull_request.user.login);
+        }
+      }
+    }
+  }
+}
+
+
+console.log('name', name);
+console.log("test3", test3);
