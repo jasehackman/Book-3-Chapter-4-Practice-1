@@ -256,3 +256,26 @@ console.log("lang", lang);
 
 
 // Question 7: What programming language was the most affected by Steve's events?
+
+let langob = {
+  JavaScript: 0,
+  Python: 0,
+}
+
+for(let i = 0; i < githubData.length; i++){
+  if('payload' in githubData[i]) {
+    for(let pay in githubData[i].payload) {
+      if(pay ==='pull_request') {
+       
+          if(githubData[i].payload.pull_request.base.repo.language === "JavaScript") {
+            langob.JavaScript++;
+          } else if (githubData[i].payload.pull_request.base.repo.language === "Python") {
+            langob.Python++
+          }
+       
+      }
+    }
+  }
+}
+
+console.log(langob);
