@@ -231,3 +231,28 @@ for(let i = 0; i < githubData.length; i++){
 }
 
 console.log(name2, commit2);
+
+
+// Question 6 // Which programming langugages were affected by Steve's events?
+
+let lang = []
+
+for(let i = 0; i < githubData.length; i++){
+  if('payload' in githubData[i]) {
+    for(let pay in githubData[i].payload) {
+      if(pay ==='pull_request') {
+        // for(let pull in githubData[i].payload.pull_request.base.repo) {
+          if(!lang.includes(githubData[i].payload.pull_request.base.repo.language)) {
+            lang.push(githubData[i].payload.pull_request.base.repo.language);
+          }
+        // }
+      }
+    }
+  }
+}
+
+
+console.log("lang", lang);
+
+
+// Question 7: What programming language was the most affected by Steve's events?
