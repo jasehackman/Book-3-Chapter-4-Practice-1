@@ -165,6 +165,69 @@ const otherLoop = githubData.forEach(element => {
 });
 
 
-console.log(count);
-console.log(rep);
+// console.log(count);
+// console.log(rep);
 
+//Question 5: Which event had the most number of commits?
+
+const commitArray = [];
+
+githubData.forEach(thing => {
+  commitArray.push(thing.id);
+})
+
+console.log(commitArray);
+
+
+
+let commit2 = 0
+let name2 = null 
+
+for(let i = 0; i < githubData.length; i++){
+  if('payload' in githubData[i]) {
+    for(let pay in githubData[i].payload) {
+      // console.log(pay);
+      if(pay ==='commits') {
+        for(let j = 0; j < githubData[j].payload.commits.length; j++) {
+          if (githubData[j].payload.commits.length > commit2) {
+            commit2 = githubData[j].payload.commits.length;
+            name2 = githubData[j].id;
+            
+          
+            
+          }
+          
+          
+        }
+      }
+    }
+  }
+  
+}
+
+
+
+// console.log('commit', commit);
+// console.log('test', test);
+
+
+for(let i = 0; i < githubData.length; i++){
+  if('payload' in githubData[i]) {
+    for(let pay in githubData[i].payload) {
+      if(pay ==='pull_request') {
+        for(let pull in githubData[i].payload.pull_request) {
+          if(pull === "commits") {
+            if (githubData[i].payload.pull_request.commits > commit2) {
+              commit2 = githubData[i].payload.pull_request.commits;
+              name2 = githubData[i].id;
+              
+            }
+          
+          }
+        }
+      }
+    }
+  }
+}
+
+console.log(name2, commit2);
